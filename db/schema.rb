@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170829220018) do
+ActiveRecord::Schema.define(version: 20170829222945) do
 
   create_table "clients", force: :cascade do |t|
     t.string "client"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20170829220018) do
     t.integer "site_id"
     t.integer "task_id"
     t.string  "counter"
+    t.integer "user_id"
   end
 
   create_table "sites", force: :cascade do |t|
@@ -43,11 +44,9 @@ ActiveRecord::Schema.define(version: 20170829220018) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string  "username"
-    t.string  "email"
-    t.integer "password"
-    t.integer "order_id"
-    t.string  "password_digest"
+    t.string "username"
+    t.string "email"
+    t.string "password_digest"
   end
 
 end

@@ -59,4 +59,4 @@ https://github.com/learn-co-students/nyc-sinatra-v-000/blob/solution/app/control
 #https://learn.co/tracks/full-stack-web-dev-with-react/sinatra/activerecord/sinatra-restful-routes
  2. NYC Playster: Join Table is similar to Orders
 22. Application Controller Implementation instead of Single Responsibility for Corneal Message to add code into Application Controller
-23. Implement User Authorization From Fwitter. Implement User
+23. Implement User Authorization From Fwitter. Implement User in MVC and in Order MVC
