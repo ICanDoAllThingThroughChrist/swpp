@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170829205120) do
+ActiveRecord::Schema.define(version: 20170829220018) do
 
   create_table "clients", force: :cascade do |t|
     t.string "client"
@@ -40,6 +40,14 @@ ActiveRecord::Schema.define(version: 20170829205120) do
 
   create_table "tasks", force: :cascade do |t|
     t.string "task"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string  "username"
+    t.string  "email"
+    t.integer "password"
+    t.integer "order_id"
+    t.string  "password_digest"
   end
 
 end
