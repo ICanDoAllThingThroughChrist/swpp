@@ -42,3 +42,19 @@
 14. create a counter for each order created to auto-increment order
 
 15. ran into problem of failure of auto-increment in orders' join table: provide counter field string data type. increment succeded.
+
+16. review User Authorization codealong in Sinatra
+
+17. reviewed NY playster for similar app 
+
+18. reviewed config.ru
+
+19. Single Party Responsible Controller Design for Orders for Sinatra CRUD
+https://github.com/learn-co-students/nyc-sinatra-v-000/blob/solution/app/controllers/figures_controller.rb
+
+20. How to incorporate User Authorization in Sinatra?
+
+21. implement CRUD for Orders similar to 
+ 1. Sinatra Restful Routes: 
+#https://learn.co/tracks/full-stack-web-dev-with-react/sinatra/activerecord/sinatra-restful-routes
+ 2. NYC Playster: Join Table is similar to Orders
