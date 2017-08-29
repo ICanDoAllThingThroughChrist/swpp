@@ -1,0 +1,45 @@
+<h1>Create a new Order</h1>
+ 
+<form action="/orders" method="POST">
+  <label>Name:</label>
+ 
+  <br></br>
+  <%@tasks.each do |task|%>
+    <input type="checkbox" 
+    name="order[task_ids][]" 
+    value="<%=task.id%>" 
+    id="<%=task.id%>">
+    <%=task.name%>
+    </input>
+<%end%>
+<br></br>
+  <%@frequencies.each do |frequency|%>
+    <input type="checkbox" 
+    name="order[frequency_ids][]" 
+    value="<%=frequency.id%>" 
+    id="<%=frequency.id%>">
+    <%=frequency.name%>
+    </input>
+<%end%>
+<br></br>
+  <%@sites.each do |site|%>
+    <input type="checkbox" 
+    name="order[site_ids][]" 
+    value="<%=site.id%>" 
+    id="<%=site.id%>">
+    <%=site.name%>
+    </input>
+<%end%>
+<br></br>
+  <%@clients.each do |client|%>
+    <input type="checkbox" 
+    name="order[client_ids][]" 
+    value="<%=client.id%>" 
+    id="<%=client.id%>">
+    <%=client.name%>
+    </input>
+<%end%>
+<label>create a new order comment</label>
+<input type="text" name="order[counter]" id="order_counter"> 
+<input type="submit" value="Create Order">
+</form>

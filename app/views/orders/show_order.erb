@@ -1,0 +1,10 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+<p><%= @order.content %></p>
+<a href="/orders/<%=@order.id%>/edit"></a><h4>Edit order</h4>
+<h4>Delete order</h4>
+<form action="/orders/<%= @order.id %>/delete" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete order">
+</form>
