@@ -89,11 +89,7 @@ class ApplicationController < Sinatra::Base
      end
 
   	get '/orders/new' do
-        binding.pry
-  		  @tasks = Task.all
-  		  @frequencies = Frequency.all
-  		  @sites = Site.all
-  		  @clients = Client.all
+        #binding.pry
   		  erb :'orders/create_order'
   	end
 
@@ -104,7 +100,7 @@ class ApplicationController < Sinatra::Base
             #binding.pry
             redirect to "/orders/new"      
           else
-            binding.pry
+            #binding.pry
             @order = Order.create(:counter => params["order"]["counter"], :user_id => "#{session[:user_id]}".to_i-1)
             @order.save
             @site = Site.find_by(:site_dtl => params["order"]["site_id"][" id="])
@@ -116,7 +112,7 @@ class ApplicationController < Sinatra::Base
             @client = Client.find_by(:client_dtl => params["order"]["client_id"][" id="])
             @client.orders << @order
             flash[:message] = "Successfully created order."
-            binding.pry
+            #binding.pry
           end
   	end
 
