@@ -12,20 +12,21 @@ class ApplicationController < Sinatra::Base
      set :session_secret, "password_security"
   end
 
-    get '/' do
-    	erb :index
-  	end
+   
+  get '/' do
+    erb :index
+  end
 
-   	get '/signup' do
-	    if !session[:user_id]
-	      #binding.pry
-	     erb :'/users/create_user'
-	   else
-	     redirect to '/orders'
-	   end
-  	end
+  get '/signup' do
+    if !session[:user_id]
+      #binding.pry
+     erb :'/users/create_user'
+   else
+     redirect to '/orders'
+   end
+  end
 
-  	post '/signup' do
+  post '/signup' do
       username = params["username"].size
       email = params["email"].size
       password = params["password"].size
@@ -72,24 +73,36 @@ class ApplicationController < Sinatra::Base
          redirect to '/login'
        else
          @user = User.find(session[:user_id])
-         @orders = Order.all
+         #binding.pry
+         @orders = []
+         orders = Order.find_by user_id: "#{session[:user_id]}".to_i-1
+         @orders << orders
+         #binding.pry 
          erb :'/orders/orders'
        end
      end
 
-	get '/orders/new' do
-		  @tasks = Task.all
-		  @frequencies = Frequency.all
-		  @sites = Site.all
-		  @clients = Client.all
-		  erb :'orders/new'
-	end
+  	get '/orders/new' do
+  		  @tasks = Task.all
+  		  @frequencies = Frequency.all
+  		  @sites = Site.all
+  		  @clients = Client.all
+  		  erb :'orders/new'
+  	end
 
-	post '/orders' do
-			binding.pry
-		  @order = Order.create(params["orders"])
-	end
+  	post '/orders' do
+  			binding.pry
+  		  @order = Order.create(params["orders"])
+  	end
 
+    helpers do
+      def logged_in?
+        !!current_user
+      end
 
+      def current_user
+        @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+      end
+    end
 
 end
