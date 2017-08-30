@@ -104,12 +104,16 @@ class ApplicationController < Sinatra::Base
             #binding.pry
             redirect to "/orders/new"      
           else
-            #binding.pry
+            binding.pry
             @order = Order.create(:counter => params["order"]["counter"], :user_id => "#{session[:user_id]}".to_i-1)
-            @order.site << Site.create(:site_id => params["order"]["site_ids"][])
-            @order.task << Task.create(:task_id => params["order"]["task_ids"][])
-            @order.frequency << Frequency.create(:frequency_id => params["order"]["frequency_ids"][])
-            @order.client << Client.create(:client_id => params["order"]["client_ids"][])
+            @site = Site.find_by(:site_dtl => params["order"]["site_id"][" id="])
+            @site.order << @order
+            @task = Task.find_by(:task_dtl => params["order"]["task_id"][" id="])
+            @task.order << @order
+            @frequency = Frequency.find_by(:frequency_dtl => params["order"]["frequency_id"][" id="])
+            @frequency.order << @order
+            @client = Client.find_by(:frequency_dtl => params["order"]["frequency_id"][" id="])
+            @client.order << @order
             @order.save
             flash[:message] = "Successfully created order."
             binding.pry
