@@ -77,17 +77,24 @@ class ApplicationController < Sinatra::Base
          @orders = []
          orders = Order.find_by user_id: "#{session[:user_id]}".to_i-1
          @orders << orders
+         task = Task.find_by user_id: "#{session[:user_id]}".to_i-1
+           if task != nil
+           @user.tasks << task 
+           else
+           flash[:message] = "there are no task associated with this user"
+           end
          #binding.pry 
          erb :'/orders/orders'
        end
      end
 
   	get '/orders/new' do
+        # binding.pry
   		  @tasks = Task.all
   		  @frequencies = Frequency.all
   		  @sites = Site.all
   		  @clients = Client.all
-  		  erb :'orders/new'
+  		  erb :'orders/create_order'
   	end
 
   	post '/orders' do

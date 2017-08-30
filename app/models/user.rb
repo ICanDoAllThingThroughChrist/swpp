@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :orders
+  has_many :tasks
   has_secure_password
 
   def slug
