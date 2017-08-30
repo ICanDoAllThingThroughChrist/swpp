@@ -93,8 +93,8 @@ class ApplicationController < Sinatra::Base
             #binding.pry
             redirect to "/orders/new"      
           else
-            #binding.pry
-            @order = Order.create(:counter => params["order"]["counter"], :user_id => "#{session[:user_id]}".to_i-1)
+            binding.pry
+            @order = current_user.orders.create(:counter => params["order"]["counter"], :user_id => "#{session[:user_id]}".to_i-1)
             @order.save
             @site = Site.find_by(:site_dtl => params["order"]["site_id"][" id="])
             @site.orders << @order
@@ -107,6 +107,7 @@ class ApplicationController < Sinatra::Base
             flash[:message] = "Successfully created order."
             #binding.pry
           end
+          #@tweet = current_user.tweets.create(content: params[:content])
   	end
 
     get '/orders/:id'do
@@ -123,10 +124,9 @@ class ApplicationController < Sinatra::Base
     end
 
     get '/orders/:id/edit' do
-      if logged_in?
-        @order = Order.find_by_id(params[:id])
-        #binding.pry
-            erb :'orders/edit_order'
+      if logged_in?  
+          @order = Order.find_by_id(params[:id])
+          erb :'orders/edit_order'
       else
         redirect to '/login'
       end

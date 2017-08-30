@@ -3,6 +3,32 @@
 <% if flash.has?(:message) %>
   <%= flash[:message] %>
 <% end %>
+<table style="width:20%">
+  <tr>
+  <th>Input Name</th>
+  <th>User_ID</th> 
+  </tr>
+  <tr>
 <% @orders.each do |order| %>
-  <li><%= order.counter %></li>
+  <td><%=  order.counter %></td>
+  <td><%=  order.user_id %></td>
+ </tr> 
 <% end %>
+<!-- </table>
+<table style="width:100%">
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th> 
+    <th>Age</th>
+  </tr>
+  <tr>
+    <td>Jill</td>
+    <td>Smith</td> 
+    <td>50</td>
+  </tr>
+  <tr>
+    <td>Eve</td>
+    <td>Jackson</td> 
+    <td>94</td>
+  </tr>
+</table> -->
