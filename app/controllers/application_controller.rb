@@ -124,13 +124,9 @@ class ApplicationController < Sinatra::Base
 
     get '/orders/:id/edit' do
       if logged_in?
-      @order = Order.find_by_id(params[:id])
-      #binding.pry
-        if @order.user_id == current_user.id #- 1
+        @order = Order.find_by_id(params[:id])
+        #binding.pry
             erb :'orders/edit_order'
-        else
-          redirect to '/orders'
-        end
       else
         redirect to '/login'
       end
@@ -147,7 +143,6 @@ class ApplicationController < Sinatra::Base
             @site.orders << @order
             @task = Task.find_or_create_by(:task_dtl => params["order"]["task_id"][" id="])
             @task.orders << @order
-                        binding.pry
             @frequency = Frequency.find_or_create_by(:frequency_dtl => params["order"]["frequency_id"][" id="])
             @frequency.orders << @order
             @client = Client.find_or_create_by(:client_dtl => params["order"]["client_id"][" id="])
@@ -164,6 +159,7 @@ class ApplicationController < Sinatra::Base
 
       def current_user
         @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+        #binding.pry
       end
     end
 
