@@ -112,7 +112,7 @@ class ApplicationController < Sinatra::Base
             @task.order << @order
             @frequency = Frequency.find_by(:frequency_dtl => params["order"]["frequency_id"][" id="])
             @frequency.order << @order
-            @client = Client.find_by(:frequency_dtl => params["order"]["frequency_id"][" id="])
+            @client = Client.find_by(:client_dtl => params["order"]["client_id"][" id="])
             @client.order << @order
             @order.save
             flash[:message] = "Successfully created order."

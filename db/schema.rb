@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170830013508) do
+ActiveRecord::Schema.define(version: 20170830054146) do
 
   create_table "clients", force: :cascade do |t|
     t.string "client"
+    t.integer "client_dtl"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -22,6 +23,7 @@ ActiveRecord::Schema.define(version: 20170830013508) do
 
   create_table "frequencies", force: :cascade do |t|
     t.string "frequency"
+    t.integer "frequency_dtl"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -36,11 +38,13 @@ ActiveRecord::Schema.define(version: 20170830013508) do
 
   create_table "sites", force: :cascade do |t|
     t.string "site"
+    t.integer "site_dtl"
   end
 
   create_table "tasks", force: :cascade do |t|
     t.string "task"
     t.integer "user_id"
+    t.integer "task_dtl"
   end
 
   create_table "users", force: :cascade do |t|
