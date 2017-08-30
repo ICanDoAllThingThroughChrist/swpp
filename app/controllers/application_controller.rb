@@ -73,16 +73,9 @@ class ApplicationController < Sinatra::Base
          redirect to '/login'
        else
          @user = User.find(session[:user_id])
-         binding.pry
-         @orders = []
-         orders = Order.find_by user_id: "#{session[:user_id]}".to_i-1
-         @orders << orders
-         task = Task.find_by user_id: "#{session[:user_id]}".to_i-1
-           if task != nil
-           @user.tasks << task 
-           else
-           flash[:message] = "there are no task associated with this user"
-           end
+         #binding.pry
+         @orders = Order.all.where("user_id = ?", "#{session[:user_id]}".to_i-1)
+         flash[:message] = "here are the current orders"
          #binding.pry 
          erb :'/orders/orders'
        end
@@ -127,6 +120,24 @@ class ApplicationController < Sinatra::Base
         flash[:message] = "You must be logged in to view a order."
         redirect to '/login'
       end
+    end
+
+    get '/orders/:id/edit' do
+      if logged_in?
+      @order = Order.find_by_id(params[:id])
+      #binding.pry
+        if @order.user_id == current_user.id - 1
+            erb :'orders/edit_order'
+        else
+          redirect to '/orders'
+        end
+      else
+        redirect to '/login'
+      end
+    end
+
+    post '/orders/:id/edit' do
+    "Hello World"
     end
 
     helpers do

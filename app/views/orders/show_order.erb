@@ -2,7 +2,7 @@
   <%= flash[:message] %>
 <% end %>
 <p><%= @order.counter %></p>
-<a href="/orders/<%=@order.id%>/edit"></a><h4>Edit order</h4>
+<a href="/orders/<%=@order.id%>/edit">Edit order</a>
 <h4>Delete order</h4>
 <form action="/orders/<%= @order.id %>/delete" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
