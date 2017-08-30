@@ -116,6 +116,19 @@ class ApplicationController < Sinatra::Base
           end
   	end
 
+    get '/orders/:id'do
+      if session[:user_id]
+        #binding.pry #find a single tweet from :id
+        @order = Order.find_by_id(params[:id])
+        # binding.pry
+        flash[:message] = "You are logged in to view an order."
+        erb :'/orders/show_order'
+      else
+        flash[:message] = "You must be logged in to view a order."
+        redirect to '/login'
+      end
+    end
+
     helpers do
       def logged_in?
         !!current_user
