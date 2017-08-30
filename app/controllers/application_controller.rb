@@ -74,7 +74,7 @@ class ApplicationController < Sinatra::Base
        else
          @user = User.find(session[:user_id])
          #binding.pry
-         @orders = Order.all.where("user_id = ?", "#{session[:user_id]}".to_i-1)
+         @orders = Order.all.where("user_id = ?", "#{session[:user_id]}".to_i)
          flash[:message] = "here are the current orders"
          #binding.pry 
          erb :'/orders/orders'
@@ -93,7 +93,7 @@ class ApplicationController < Sinatra::Base
             #binding.pry
             redirect to "/orders/new"      
           else
-            binding.pry
+            #binding.pry
             @order = current_user.orders.create(:counter => params["order"]["counter"], :user_id => "#{session[:user_id]}".to_i-1)
             @order.save
             @site = Site.find_by(:site_dtl => params["order"]["site_id"][" id="])

@@ -3,14 +3,17 @@
 <% if flash.has?(:message) %>
   <%= flash[:message] %>
 <% end %>
-<table style="width:20%">
+<table style="width:25%">
   <tr>
+  <th>Order ID</th>
   <th>Input Name</th>
   <th>User_ID</th> 
   </tr>
   <tr>
 <% @orders.each do |order| %>
+  <td><%=  order.id %></td>
   <td><%=  order.counter %></td>
+  <!--%binding.pry%-->
   <td><%=  order.user_id %></td>
  </tr> 
 <% end %>
