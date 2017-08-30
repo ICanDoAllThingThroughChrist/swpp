@@ -18,10 +18,18 @@
   </select>
 <br></br>
   <label for="site_id">Select a site</label>
-  <select id='site_id' name='order[site_ids][]' type='text'>
-    <% @sites.each() do |site| %>
-      <option value="<%= site.id()%>"> <%= site.site() %> </option>
-    <% end %>
+  <select name="order[site_id] id="order_site_id">
+  <option value="">Please select</option>
+  <option value="1">5614 Neches</option>
+  <option value="2">11500 S Post Oak</option>
+  <option value="3">1245 Judiway</option>
+  <option value="4">1502 Central</option>
+  <option value="5">5900 Westpark</option>
+  <option value="6">South ESC</option>
+  <option value="7">10875 SW Freeway</option>
+  <option value="8">2240 Central</option>
+  <option value="9">144000 Sommermeyer</option>
+  <option value="10">5100 Sunbeam</option>
   </select>
 <br></br>
   <label for="client_id">Select a client</label>

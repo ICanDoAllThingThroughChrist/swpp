@@ -73,7 +73,7 @@ class ApplicationController < Sinatra::Base
          redirect to '/login'
        else
          @user = User.find(session[:user_id])
-         #binding.pry
+         binding.pry
          @orders = []
          orders = Order.find_by user_id: "#{session[:user_id]}".to_i-1
          @orders << orders
@@ -99,7 +99,21 @@ class ApplicationController < Sinatra::Base
 
   	post '/orders' do
   			#binding.pry
-  		  @order = Order.create(params["orders"])
+  		  #@order = Order.create(params["order"])
+          if params["order"].empty?
+            #binding.pry
+            redirect to "/orders/new"      
+          else
+            #binding.pry
+            @order = Order.create(:counter => params["order"]["counter"], :user_id => "#{session[:user_id]}".to_i-1)
+            @order.site << Site.create(:site_id => params["order"]["site_ids"][])
+            @order.task << Task.create(:task_id => params["order"]["task_ids"][])
+            @order.frequency << Frequency.create(:frequency_id => params["order"]["frequency_ids"][])
+            @order.client << Client.create(:client_id => params["order"]["client_ids"][])
+            @order.save
+            flash[:message] = "Successfully created order."
+            binding.pry
+          end
   	end
 
     helpers do
