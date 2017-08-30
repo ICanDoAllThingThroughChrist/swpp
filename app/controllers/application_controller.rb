@@ -111,12 +111,18 @@ class ApplicationController < Sinatra::Base
   	end
 
     get '/orders/:id'do
-      if session[:user_id]
-        #binding.pry #find a single tweet from :id
-        @order = Order.find_by_id(params[:id])
-        # binding.pry
-        flash[:message] = "You are logged in to view an order."
-        erb :'/orders/show_order'
+      # binding.pry
+      if session[:user_id] == current_user.id
+        if Order.where("id = ? AND user_id = ?", params[:id], "#{session[:user_id]}".to_i) != []
+          #binding.pry
+          @order =Order.where("id = ? AND user_id= ?", params[:id], "#{session[:user_id]}".to_i)
+        #binding.pry
+          flash[:message] = "You are logged in to view an order."
+          erb :'/orders/show_order'
+        else 
+          flash[:message] = "there are no orders under this user id."
+          redirect to '/orders/new'
+        end
       else
         flash[:message] = "You must be logged in to view a order."
         redirect to '/login'
