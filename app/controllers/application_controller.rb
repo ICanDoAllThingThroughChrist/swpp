@@ -89,7 +89,7 @@ class ApplicationController < Sinatra::Base
      end
 
   	get '/orders/new' do
-        # binding.pry
+        binding.pry
   		  @tasks = Task.all
   		  @frequencies = Frequency.all
   		  @sites = Site.all
@@ -106,15 +106,15 @@ class ApplicationController < Sinatra::Base
           else
             binding.pry
             @order = Order.create(:counter => params["order"]["counter"], :user_id => "#{session[:user_id]}".to_i-1)
-            @site = Site.find_by(:site_dtl => params["order"]["site_id"][" id="])
-            @site.order << @order
-            @task = Task.find_by(:task_dtl => params["order"]["task_id"][" id="])
-            @task.order << @order
-            @frequency = Frequency.find_by(:frequency_dtl => params["order"]["frequency_id"][" id="])
-            @frequency.order << @order
-            @client = Client.find_by(:client_dtl => params["order"]["client_id"][" id="])
-            @client.order << @order
             @order.save
+            @site = Site.find_by(:site_dtl => params["order"]["site_id"][" id="])
+            @site.orders << @order
+            @task = Task.find_by(:task_dtl => params["order"]["task_id"][" id="])
+            @task.orders << @order
+            @frequency = Frequency.find_by(:frequency_dtl => params["order"]["frequency_id"][" id="])
+            @frequency.orders << @order
+            @client = Client.find_by(:client_dtl => params["order"]["client_id"][" id="])
+            @client.orders << @order
             flash[:message] = "Successfully created order."
             binding.pry
           end
