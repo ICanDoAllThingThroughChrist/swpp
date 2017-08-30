@@ -4,17 +4,47 @@
   <label>Name:</label>
   <br></br>
   <label for="task_id">Select a task</label>
-  <select id='task_id' name='order[task_id][]' type='text'>
-    <% @tasks.each() do |task| %>
-      <option value="<%= task.id()%>"> <%= task.task() %> </option>
-    <% end %>
+<select name="order[task_id] id="order_task_id">
+  <option value="">Please select</option>
+  <option value="1">Identify changes to Pollution Prevention Tea</option>
+  <option value="2">ID changes to non-stormwater discharges</option>
+  <option value="3">ID changes to inventory of exposed mat'l</option>
+  <option value="4">Updates to narrative of all potential pollutant sources</option>
+  <option value="5">Site map update</option>
+  <option value="6">Spills and Leaks Quarterly Updates Log</option>
+  <option value="7">Best Management Practices</option>
+  <option value="8">Spill Prevention and response measures</option>
+  <option value="9">Maint Prog of Structural Controls: Manifest</option>
+  <option value="10">Employee Training Program</option>
+  <option value="11">Rain Gauge Monitoring</option>
+  <option value="12">Benchmark Monitoring</option>
+  <option value="13">Site Compliance Evaluation Report</option>
+  <option value="14">Program Timeline for Pollution Measures and Control</option>
+  <option value="15">Five Year Permit Renewal</option>
+  <option value="16">Periodic Inspection with Checklist</option>
+  <option value="17">Daily Monitoring Report of Numeric Effluent</option>
+  <option value="18">City Engineer Inspection Report Response</option>
+  <option value="19">Plan revisions log</option>
+  <option value="20">MSGP copy</option>
+  <option value="21">SW3P preparation</option>
+  <option value="22">Spill prevention countermeasue control plan</option>
+  <option value="23">FMD collaboration</option>
+  <option value="24">Annual compliance signature page</option>
+  <option value="25">Visual examination</option>
+  <option value="26">COH SWQ permit renewal</option>
+  <option value="27">Truck Wash manifest</option>
   </select>
   <br></br>
   <label for="frequency_id">Select a frequency</label>
-  <select id='frequency_id' name='order[frequency_ids][]' type='text'>
-    <% @frequencies.each() do |frequency| %>
-      <option value="<%= frequency.id()%>"> <%= frequency.frequency() %> </option>
-    <% end %>
+   <select name="order[frequency_id] id="order_frequency_id">
+  <option value="">Please select</option>
+  <option value="1">Quarterly, Instances</option>
+  <option value="2">Daily, Instance</option>
+  <option value="3">Weekly, Instance</option>
+  <option value="4">Monthly, Instance</option>
+  <option value="5">Annual, Instance</option>
+  <option value="6">Instance</option>
+  <option value="7">Semi-Annual, Instance</option>
   </select>
 <br></br>
   <label for="site_id">Select a site</label>
@@ -33,10 +63,19 @@
   </select>
 <br></br>
   <label for="client_id">Select a client</label>
-  <select id='client_id' name='order[client_ids][]' type='text'>
-    <% @clients.each() do |client| %>
-      <option value="<%= client.id()%>"> <%= client.client() %> </option>
-    <% end %>
+<select name="order[client_id] id="order_client_id">
+  <option value="">Please select</option>
+  <option value="1">Chief of Staff</option>
+  <option value="2">North Assistant Director</option>
+  <option value="3">South AssiChief of Staffstant Director</option>
+  <option value="4">Southwest Deputy Assistant Director of Collection</option>
+  <option value="5">Southeast Deputy Assistant Director of Collection</option>
+  <option value="6">Northeast Deputy Assistant Director of Collection</option>
+  <option value="7">Northwest Deputy Assistant Director of Collection</option>
+  <option value="8">Recycling Division Manager</option>
+  <option value="9">Administrative Manager of SWMD Maintenance</option>
+  <option value="10">Recycling Division Westpark Superintendent</option>
+  </select>
   </select>
 <br></br>
 <label>Enter Your Name</label>
