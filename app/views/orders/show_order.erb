@@ -1,7 +1,8 @@
 <% if flash.has?(:message) %>
   <%= flash[:message] %>
 <% end %>
-<p><%= @order.counter %></p>
+<!--%binding.pry%-->
+<p><%= @order.id %></p>
 <a href="/orders/<%=@order.id%>/edit">Edit order</a>
 <h4>Delete order</h4>
 <form action="/orders/<%= @order.id %>/delete" method="post">
