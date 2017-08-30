@@ -98,7 +98,7 @@ class ApplicationController < Sinatra::Base
   	end
 
   	post '/orders' do
-  			binding.pry
+  			#binding.pry
   		  @order = Order.create(params["orders"])
   	end
 
