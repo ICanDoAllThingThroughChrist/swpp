@@ -136,8 +136,24 @@ class ApplicationController < Sinatra::Base
       end
     end
 
-    post '/orders/:id/edit' do
-    "Hello World"
+    post '/orders/:id/edit' do #edit action
+    #binding.pry
+        @order = Order.find_by_id(params[:id])
+        binding.pry
+        if params["order"].empty?
+          redirect to "/orders/#{@order.id}/edit"
+        else
+            @site = Site.find_by(:site_dtl => params["order"]["site_id"][" id="])
+            @site.orders << @order
+            @task = Task.find_by(:task_dtl => params["order"]["task_id"][" id="])
+            @task.orders << @order
+            @frequency = Frequency.find_by(:frequency_dtl => params["order"]["frequency_id"][" id="])
+            @frequency.orders << @order
+            @client = Client.find_by(:client_dtl => params["order"]["client_id"][" id="])
+            @client.orders << @order
+            flash[:message] = "Successfully edited order."
+          redirect to "/orders/#{@order.id}"
+        end
     end
 
     helpers do
