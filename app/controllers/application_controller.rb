@@ -74,7 +74,8 @@ class ApplicationController < Sinatra::Base
        else
          @user = User.find(session[:user_id])
          #binding.pry
-         @orders = Order.all.where("user_id = ?", "#{session[:user_id]}".to_i)
+         #@orders = Order.all.where("user_id = ?", "#{session[:user_id]}".to_i)
+         @orders = current_user.orders
          flash[:message] = "here are the current orders"
          #binding.pry 
          erb :'/orders/orders'
@@ -113,10 +114,15 @@ class ApplicationController < Sinatra::Base
     get '/orders/:id'do
       # binding.pry
       if session[:user_id]
+          #binding.pry
           @order =Order.find_by_id(params[:id])
+          if @order.user.id == current_user.id
         #binding.pry
-          flash[:message] = "You are logged in to view an order."
-          erb :'/orders/show_order'
+            flash[:message] = "You are logged in to view an order."
+            erb :'/orders/show_order'
+          else
+            redirect to '/orders'
+          end
       else 
         flash[:message] = "You must be logged in to view a order."
         redirect to '/login'
