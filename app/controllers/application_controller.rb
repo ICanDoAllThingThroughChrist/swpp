@@ -84,15 +84,15 @@ class ApplicationController < Sinatra::Base
        end
      end
 
-  	get '/orders/new' do
+    get '/orders/new' do
         #binding.pry
-  		  erb :'orders/create_order'
+        erb :'orders/create_order'
 
-  	end
+    end
 
-  	post '/orders' do
-  			#binding.pry
-  		  #@order = Order.create(params["order"])
+    post '/orders' do
+        #binding.pry
+        #@order = Order.create(params["order"])
           if params["order"].empty?
             #binding.pry
             redirect to "/orders/new"      
@@ -109,11 +109,11 @@ class ApplicationController < Sinatra::Base
             @client = Client.find_by(:client_dtl => params["order"]["client_id"][" id="])
             @client.orders << @order
             flash[:message] = "Successfully created order."
-            rediect to '/orders'
+            redirect to '/orders'
             #binding.pry
           end
           #@tweet = current_user.tweets.create(content: params[:content])
-  	end
+    end
 
     get '/orders/:id'do
       # binding.pry
