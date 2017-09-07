@@ -1,3 +1,8 @@
-<%@tweets.each do |tweet|%>
-<p><%=tweet.content%></p>
+ <%if flash.has?(:message)%>
+ <%=flash[:message]%>
+ <% end %>
+<%@orders.each do |order|%>
+<p><%=order.content%></p>
 <% end %>
+<p><a href="/orders/:id"> Order Link</a></p>
+<p><a href="/logout">Log Out</a></p>

@@ -77,7 +77,8 @@ class ApplicationController < Sinatra::Base
          #binding.pry
          #@orders = Order.all.where("user_id = ?", "#{session[:user_id]}".to_i)
          @orders = current_user.orders
-         flash[:message] = "here are the current orders"
+         
+         flash[:message] = "here are your current orders"
          #binding.pry 
          erb :'/orders/orders'
        end
@@ -86,6 +87,7 @@ class ApplicationController < Sinatra::Base
   	get '/orders/new' do
         #binding.pry
   		  erb :'orders/create_order'
+
   	end
 
   	post '/orders' do
@@ -107,6 +109,7 @@ class ApplicationController < Sinatra::Base
             @client = Client.find_by(:client_dtl => params["order"]["client_id"][" id="])
             @client.orders << @order
             flash[:message] = "Successfully created order."
+            rediect to '/orders'
             #binding.pry
           end
           #@tweet = current_user.tweets.create(content: params[:content])

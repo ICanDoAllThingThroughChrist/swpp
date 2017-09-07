@@ -2,15 +2,19 @@
 <% if flash.has?(:message) %>
   <%= flash[:message] %>
 <% end %>
-<table style="width:25%">
+<br></br>
+<table style="width:35%">
   <tr>
   <th>Order ID</th>
+  <th>Edit Order</th>
   <th>Input Name</th>
-  <th>User_ID</th> 
+  <th>User_ID</th>
+  <th>Delete Order</th>
   </tr>
   <tr>
 <% @orders.each do |order| %>
   <td><%=  order.id %></td>
+  <td><a href="/orders/<%= order.id %>/edit">"click to edit"</a></td>
   <td><%=  order.counter %></td>
   <!--%binding.pry%-->
   <td><%=  order.user_id %></td>
@@ -19,3 +23,4 @@
 </table>
 <br></br>
 <p><a href="/logout">Log Out</a></p>
+
