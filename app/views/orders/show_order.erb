@@ -4,8 +4,3 @@
 <!--%binding.pry%-->
 <p><%= @order.id %></p>
 <a href="/orders/<%=@order.id%>/edit">Edit order</a>
-<h4>Delete order</h4>
-<form action="/orders/<%= @order.id %>/delete" method="post">
-  <input id="hidden" type="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete order">
-</form>

@@ -104,6 +104,7 @@ class ApplicationController < Sinatra::Base
             @site.orders << @order
             @task = Task.find_by(:task_dtl => params["order"]["task_id"][" id="])
             @task.orders << @order
+            binding.pry
             @frequency = Frequency.find_by(:frequency_dtl => params["order"]["frequency_id"][" id="])
             @frequency.orders << @order
             @client = Client.find_by(:client_dtl => params["order"]["client_id"][" id="])
@@ -119,11 +120,14 @@ class ApplicationController < Sinatra::Base
       # binding.pry
       if session[:user_id]
           #binding.pry
+          @user = User.find(session[:user_id])
           @order =Order.find_by_id(params[:id])
           if @order.user.id == current_user.id
         #binding.pry
+          @orders = current_user.orders
+
             flash[:message] = "You are logged in to view an order."
-            erb :'/orders/show_order'
+            erb :'/orders/orders'
           else
             redirect to '/orders'
           end
