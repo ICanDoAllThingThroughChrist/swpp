@@ -9,7 +9,7 @@
   <th>Edit Order</th>
   <th>Input Name</th>
   <th>User_ID</th>
-  <th>Delete Order</th>
+  <th>Order's Task</th>
   </tr>
   <tr>
 <% @orders.each do |order| %>
@@ -18,6 +18,8 @@
   <td><%=  order.counter %></td>
   <!--%binding.pry%-->
   <td><%=  order.user_id %></td>
+   <!--%binding.pry%-->
+  <td><%=  order.task.task %></td>       
  </tr> 
 <% end %>
 </table>

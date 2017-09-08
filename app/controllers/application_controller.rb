@@ -77,14 +77,14 @@ class ApplicationController < Sinatra::Base
          #binding.pry
          #@orders = Order.all.where("user_id = ?", "#{session[:user_id]}".to_i)
          @orders = current_user.orders
-         
+         #binding.pry
          flash[:message] = "here are your current orders"
          #binding.pry 
          erb :'/orders/orders'
        end
      end
 
-    get '/orders/new' do
+    get '/orders/new' do #create a new order
         #binding.pry
         erb :'orders/create_order'
 
