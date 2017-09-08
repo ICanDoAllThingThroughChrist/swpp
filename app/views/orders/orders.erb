@@ -3,23 +3,25 @@
   <%= flash[:message] %>
 <% end %>
 <br></br>
-<table style="width:50%">
+<table style="width:75%">
   <tr>
   <th>Order ID</th>
-  <th>Edit Order</th>
+  <th>Edit Link</th>
   <th>Input Name</th>
   <th>User_ID</th>
   <th>Order's Task</th>
+  <th>Order's Site</th>
   </tr>
   <tr>
 <% @orders.each do |order| %>
   <td><%=  order.id %></td>
-  <td><a href="/orders/<%= order.id %>/edit">"click to edit"</a></td>
+  <td><a href="/orders/<%= order.id %>/edit">"edit"</a></td>
   <td><%=  order.counter %></td>
   <!--%binding.pry%-->
   <td><%=  order.user_id %></td>
    <!--%binding.pry%-->
-  <td><%=  order.task.task %></td>       
+  <td><%=  order.task.task %></td>
+  <td><%=  order.site.site %></td>
  </tr> 
 <% end %>
 </table>

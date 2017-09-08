@@ -136,6 +136,7 @@ class ApplicationController < Sinatra::Base
     get '/orders/:id/edit' do
       if logged_in?  
           @order = Order.find_by_id(params[:id])
+          flash[:message] = "Please revise your order."
           erb :'orders/edit_order'
       else
         redirect to '/login'
