@@ -104,7 +104,7 @@ class ApplicationController < Sinatra::Base
             @site.orders << @order
             @task = Task.find_by(:task_dtl => params["order"]["task_id"][" id="])
             @task.orders << @order
-            binding.pry
+            # binding.pry
             @frequency = Frequency.find_by(:frequency_dtl => params["order"]["frequency_id"][" id="])
             @frequency.orders << @order
             @client = Client.find_by(:client_dtl => params["order"]["client_id"][" id="])
