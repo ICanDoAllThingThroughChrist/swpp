@@ -1,6 +1,5 @@
 <% if flash.has?(:message) %>
   <%= flash[:message] %>
 <% end %>
-<!--%binding.pry%-->
 <p><%= @order.id %></p>
 <a href="/orders/<%=@order.id%>/edit">Edit order</a>
