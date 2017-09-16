@@ -65,7 +65,6 @@ class ApplicationController < Sinatra::Base
     if !logged_in?
       redirect to '/login'
     else
-      @user = User.find(session[:user_id])
       @orders = current_user.orders
       flash[:message] = "here are your current orders"
       erb :'/orders/orders'
@@ -114,7 +113,6 @@ class ApplicationController < Sinatra::Base
 
   get '/orders/:id/edit' do
     if !logged_in?
-      @user = User.find(session[:user_id])
       @order = Order.find_by_id(params[:id])
         if @order.user.id == current_user.id 
           @orders = current_user.orders
