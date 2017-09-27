@@ -89,6 +89,9 @@ class ApplicationController < Sinatra::Base
       @frequency.orders << @order
       @client = Client.find_by(:client_dtl => params["order"]["client_id"][" id="])
       @client.orders << @order
+      @status = Status.find_by(:status_dtl => params["order"]["status_id"][" id="])
+      #binding.pry
+      @status.orders << @order
       flash[:message] = "Successfully created order."
       redirect to '/orders'
     end

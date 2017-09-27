@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170830054146) do
+ActiveRecord::Schema.define(version: 20170927034332) do
 
   create_table "clients", force: :cascade do |t|
     t.string "client"
@@ -19,6 +19,10 @@ ActiveRecord::Schema.define(version: 20170830054146) do
 
   create_table "comments", force: :cascade do |t|
     t.string "comment"
+  end
+
+  create_table "deadlines", force: :cascade do |t|
+    t.string "deadline"
   end
 
   create_table "frequencies", force: :cascade do |t|
@@ -34,11 +38,17 @@ ActiveRecord::Schema.define(version: 20170830054146) do
     t.integer "task_id"
     t.string "counter"
     t.integer "user_id"
+    t.integer "status_id"
   end
 
   create_table "sites", force: :cascade do |t|
     t.string "site"
     t.integer "site_dtl"
+  end
+
+  create_table "statuses", force: :cascade do |t|
+    t.string "status"
+    t.integer "status_dtl"
   end
 
   create_table "tasks", force: :cascade do |t|

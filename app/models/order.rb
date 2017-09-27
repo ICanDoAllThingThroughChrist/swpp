@@ -5,4 +5,5 @@ class Order < ActiveRecord::Base
 	belongs_to :site 
 	belongs_to :frequency 
 	belongs_to :user
+	belongs_to :status
 end 

@@ -9,8 +9,8 @@ ActiveRecord::Base.establish_connection(#CONNECTING TO THE DATABASE
 )
 
 require_all 'app'
-
-
+#adapter: postgresql
+#https://th3silverlining.com/2012/04/22/using-the-heroku-shared-database-with-sinatra-and-active-record/
 # ENV['SINATRA_ENV'] ||= "development"
 
 # require 'bundler/setup'
