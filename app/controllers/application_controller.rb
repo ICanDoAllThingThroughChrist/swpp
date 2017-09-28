@@ -104,7 +104,7 @@ class ApplicationController < Sinatra::Base
         if @order.user.id == current_user.id
           @orders = current_user.orders
           flash[:message] = "You are logged in to view an order."
-          erb :'/orders/orders'
+          erb :'/orders/show_order'
         else
           redirect to '/orders'
         end
