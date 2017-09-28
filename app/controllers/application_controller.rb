@@ -153,6 +153,11 @@ class ApplicationController < Sinatra::Base
       end
   end
 
+  get '/orders/:id/show' do 
+    @order = Order.find_by_id(params[:id])
+      erb :'orders/show_order'
+  end
+
   helpers do
     def logged_in?
       !!current_user
