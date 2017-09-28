@@ -115,17 +115,17 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/orders/:id/edit' do
-    binding.pry 
+    #binding.pry 
     if logged_in?
-      binding.pry
+      #binding.pry
       @order = Order.find_by_id(params[:id])
-      binding.pry
+      #binding.pry
         if @order.user.id == current_user.id 
           @orders = current_user.orders
           flash[:message] = "You are logged in to view an order."
           erb :'/orders/orders'
         else
-          binding.pry
+          #binding.pry
           redirect to '/orders'
         end
           flash[:message] = "Please revise your order."
