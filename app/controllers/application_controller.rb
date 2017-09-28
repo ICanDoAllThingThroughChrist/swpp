@@ -98,7 +98,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/orders/:id'do
-    if !logged_in?
+    if logged_in?
       @user = User.find(session[:user_id])
       @order =Order.find_by_id(params[:id])
         if @order.user.id == current_user.id
@@ -115,13 +115,17 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/orders/:id/edit' do
-    if !logged_in?
+    binding.pry 
+    if logged_in?
+      binding.pry
       @order = Order.find_by_id(params[:id])
+      binding.pry
         if @order.user.id == current_user.id 
           @orders = current_user.orders
           flash[:message] = "You are logged in to view an order."
           erb :'/orders/orders'
         else
+          binding.pry
           redirect to '/orders'
         end
           flash[:message] = "Please revise your order."
@@ -155,7 +159,9 @@ class ApplicationController < Sinatra::Base
     end
 
     def current_user
-        @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+      if session[:user_id]
+        @current_user ||= User.find_by(id: session[:user_id]) 
+      end
     end
   end
 
