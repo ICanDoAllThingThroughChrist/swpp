@@ -155,6 +155,7 @@ class ApplicationController < Sinatra::Base
 
   get '/orders/:id/show' do 
     @order = Order.find_by_id(params[:id])
+    flash[:message] = "here is your order"
       erb :'orders/show_order'
   end
 
