@@ -36,6 +36,15 @@
     <%=client.name%>
     </input>
 <%end%>
+<br></br>
+  <%@status.each do |status|%>
+    <input type="checkbox" 
+    name="order[status_ids][]" 
+    value="<%=status.id%>" 
+    id="<%=status.id%>">
+    <%=status.name%>
+    </input>
+<%end%>
 <label>create a new order comment</label>
 <input type="text" name="order[counter]" id="order_counter"> 
 <input type="submit" value="Create Order">

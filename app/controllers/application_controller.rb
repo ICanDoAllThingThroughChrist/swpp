@@ -66,7 +66,9 @@ class ApplicationController < Sinatra::Base
       redirect to '/login'
     else
       @orders = current_user.orders
+      #binding.pry
       flash[:message] = "here are your current orders"
+      # binding.pry
       erb :'/orders/orders'
     end
   end
@@ -77,7 +79,7 @@ class ApplicationController < Sinatra::Base
 
   post '/orders' do
     if params["order"].empty?
-      redirect to "/orders/new"      
+      redirect to "/orders/create_order"      
     else
       @order = current_user.orders.create(:counter => params["order"]["counter"], :user_id => "#{session[:user_id]}".to_i-1)
       @order.save
