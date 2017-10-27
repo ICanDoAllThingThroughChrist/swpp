@@ -78,11 +78,17 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/orders' do
+      puts params
+      #binding.pry
+      # original_string = params["order"]
+      # @reversed_string = original_string.reverse
+      #https://learn.co/tracks/full-stack-web-development-v3/sinatra/forms/passing-data-between-views-and-controllers
     # raise.params.inspect
     if params["order"].empty?
       redirect to "/orders/create_order"      
     else
       @order = current_user.orders.create(:counter => params["order"]["counter"], :user_id => "#{session[:user_id]}".to_i-1)
+      @order.created_date = DateTime.now
       @order.save
       @site = Site.find_by(:site_dtl => params["order"]["site_id"][" id="])
       @site.orders << @order
@@ -93,7 +99,7 @@ class ApplicationController < Sinatra::Base
       @client = Client.find_by(:client_dtl => params["order"]["client_id"][" id="])
       @client.orders << @order
       @status = Status.find_by(:status_dtl => params["order"]["status_id"][" id="])
-      #binding.pry
+      binding.pry
       @status.orders << @order
       flash[:message] = "Successfully created order."
       redirect to '/orders'
@@ -139,7 +145,11 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/orders/:id/edit' do 
+    # puts params
+    # @original = params["order"]
+    # binding.pry
     @order = Order.find_by_id(params[:id])
+     puts params
       if params["order"].empty?
         redirect to "/orders/#{@order.id}/edit"
       else
@@ -151,6 +161,10 @@ class ApplicationController < Sinatra::Base
         @frequency.orders << @order
         @client = Client.find_or_create_by(:client_dtl => params["order"]["client_id"][" id="])
         @client.orders << @order
+        @order.updated_date = DateTime.now 
+        #datetime attribute ruby sinatra, https://code.tutsplus.com/tutorials/building-single-page-web-apps-with-sinatra-part-1--net-27911
+        @order.save
+      binding.pry
         flash[:message] = "Successfully edited order."
         redirect to "/orders/#{@order.id}"
       end

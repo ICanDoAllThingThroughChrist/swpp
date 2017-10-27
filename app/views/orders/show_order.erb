@@ -15,7 +15,8 @@
 <td><%= @order.site.site %></td>
 <td><%= @order.status.status%></td>
 <td><%= @order.updated_date%></td>
-<% binding.pry %>
+<!-- <td><%#= @order.updated_date.strftime("%m/%d/%Y at %I:%M:%S %p")%></td> -->
+<%# binding.pry %>
 </tr>
 </table>
 <p><a href="/orders/<%=@order.id%>/edit">Edit Order</a></p>
