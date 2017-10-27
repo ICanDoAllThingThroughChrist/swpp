@@ -7,12 +7,15 @@
 <th>Order's Task</th>
 <th>Order's Site</th>
 <th>Order's Status</th>
+<th>Order's Updated Date</th>
 </tr>
 <tr>
-<td><%= @order.id %></td>
+<td><%= @order.id%></td>
 <td><%= @order.task.task %></td>
 <td><%= @order.site.site %></td>
-<td><%= @order.status.status %></td>
+<td><%= @order.status.status%></td>
+<td><%= @order.updated_date%></td>
+<% binding.pry %>
 </tr>
 </table>
 <p><a href="/orders/<%=@order.id%>/edit">Edit Order</a></p>

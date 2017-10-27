@@ -13,6 +13,7 @@
   <th>Order's Task</th>
   <th>Order's Site</th>
   <th>Order's Status</th>
+  <th>Order's Updated Time</th>
   </tr>
   <% @orders.each do |order| %>
     <tr>
@@ -23,6 +24,7 @@
     <td><%=  order.task.task %></td>
     <td><%=  order.site.site %></td>
     <td><%=  order.status.status %></td>
+    <td><%=  order.updated_date%></td>
    </tr> 
   <% end %>
 </table>

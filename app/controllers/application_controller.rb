@@ -78,6 +78,7 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/orders' do
+    # raise.params.inspect
     if params["order"].empty?
       redirect to "/orders/create_order"      
     else
