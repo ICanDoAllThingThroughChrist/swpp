@@ -149,13 +149,14 @@ class ApplicationController < Sinatra::Base
     # @original = params["order"]
     # binding.pry
     @order = Order.find_by_id(params[:id])
-     puts params
+     #raise params.inspect
       if params["order"].empty?
         redirect to "/orders/#{@order.id}/edit"
       else
         @site = Site.find_or_create_by(:site_dtl => params["order"]["site_id"][" id="])
         @site.orders << @order
         @task = Task.find_or_create_by(:task_dtl => params["order"]["task_id"][" id="])
+        #binding.pry
         @task.orders << @order
         @frequency = Frequency.find_or_create_by(:frequency_dtl => params["order"]["frequency_id"][" id="])
         @frequency.orders << @order
@@ -164,7 +165,7 @@ class ApplicationController < Sinatra::Base
         @order.updated_date = DateTime.now 
         #datetime attribute ruby sinatra, https://code.tutsplus.com/tutorials/building-single-page-web-apps-with-sinatra-part-1--net-27911
         @order.save
-      binding.pry
+        #binding.pry
         flash[:message] = "Successfully edited order."
         redirect to "/orders/#{@order.id}"
       end

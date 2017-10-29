@@ -16,6 +16,7 @@
   <th>Order's Updated Time</th>
   </tr>
   <% @orders.each do |order| %>
+  <% binding.pry %>
     <tr>
     <td><%=  order.id %></td>
     <td><a href="/orders/<%= order.id %>/show">"edit"</a></td>
