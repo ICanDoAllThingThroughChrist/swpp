@@ -26,7 +26,7 @@
     <td><%=  order.site.site %></td>
     <td><%=  order.status.status %></td>
     <%# binding.pry unless order.updated_date%>
-    <td><%=  order.updated_date.strftime("%d/%m/%Y at %I,%M,%S %p") if order.updated_date%></td>
+    <td><%=  order.updated_date.strftime("%m/%d/%Y at %I:%M:%S %p") if order.updated_date%></td>
    </tr> 
   <% end %>
 </table>

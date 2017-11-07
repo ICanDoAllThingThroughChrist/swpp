@@ -161,6 +161,8 @@ class ApplicationController < Sinatra::Base
         @frequency.orders << @order
         @client = Client.find_or_create_by(:client_dtl => params["order"]["client_id"][" id="])
         @client.orders << @order
+        @status = Status.find_by(:status_dtl => params["order"]["status_id"][" id="])
+        @status.orders << @order
         @order.updated_date = DateTime.now 
         #datetime attribute ruby sinatra, https://code.tutsplus.com/tutorials/building-single-page-web-apps-with-sinatra-part-1--net-27911
         @order.save
