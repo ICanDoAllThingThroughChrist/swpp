@@ -78,7 +78,7 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/orders' do
-      puts params
+      # puts params
       #binding.pry
       # original_string = params["order"]
       # @reversed_string = original_string.reverse
@@ -87,8 +87,11 @@ class ApplicationController < Sinatra::Base
     if params["order"].empty?
       redirect to "/orders/create_order"      
     else
+      # binding.pry
       @order = current_user.orders.create(:counter => params["order"]["counter"], :user_id => "#{session[:user_id]}".to_i-1)
+      # binding.pry
       @order.created_date = DateTime.now
+      @order.updated_date = DateTime.now 
       @order.save
       @site = Site.find_by(:site_dtl => params["order"]["site_id"][" id="])
       @site.orders << @order
@@ -99,7 +102,7 @@ class ApplicationController < Sinatra::Base
       @client = Client.find_by(:client_dtl => params["order"]["client_id"][" id="])
       @client.orders << @order
       @status = Status.find_by(:status_dtl => params["order"]["status_id"][" id="])
-      binding.pry
+      # binding.pry
       @status.orders << @order
       flash[:message] = "Successfully created order."
       redirect to '/orders'
@@ -130,15 +133,11 @@ class ApplicationController < Sinatra::Base
       @order = Order.find_by_id(params[:id])
       #binding.pry
         if @order.user.id == current_user.id 
-          @orders = current_user.orders
-          flash[:message] = "You are logged in to view an order."
-          erb :'/orders/orders'
-        else
-          #binding.pry
-          redirect to '/orders'
-        end
           flash[:message] = "Please revise your order."
           erb :'orders/edit_order'
+        else
+          redirect to '/orders'
+        end
     else
       redirect to '/login'
     end
